@@ -37,7 +37,7 @@ print('The OFA Network is ready.')
 #    print('Using GPU.')
 #else:
 #    print('Using CPU.')
-def prepare_subnet(ofa_net, '''data_loader,'''bn_list,net_config):
+def prepare_subnet(ofa_net, bn_list, net_config):
     assert 'ks' in net_config and 'd' in net_config and 'e' in net_config
     assert len(net_config['ks']) == 20 and len(net_config['e']) == 20 and len(net_config['d']) == 5
     ofa_net.set_active_subnet(ks=net_config['ks'], d=net_config['d'], e=net_config['e'])
@@ -129,8 +129,7 @@ optimal_networks = []
 for i in range(1):  
     net_config = mylist['configs'][i]
     bn_list = mylist['bn_lists'][i]
-    optimal_networks.append(prepare_subnet(ofa_network,
-	'''data_loader,'''bn_list[0],net_config))
+    optimal_networks.append(prepare_subnet(ofa_network, bn_list[0],net_config))
 '''
 top1s = []
 latency_list = []
